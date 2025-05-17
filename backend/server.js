@@ -16,7 +16,7 @@ app.use(cors());                    // zezwala frontendowi na inną domenę/port
 app.use(helmet());                  // minimalizuje ryzyko ataków typu XSS itp. :contentReference[oaicite:8]{index=8}
 
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 
 const connectDB = require('./config/db');
 connectDB();                          // łączy z MongoDB przed podniesieniem tras :contentReference[oaicite:17]{index=17}

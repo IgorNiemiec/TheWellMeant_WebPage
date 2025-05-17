@@ -1,5 +1,8 @@
-const { body } = require('express-validator');
 
+const validateRequest = require('../middleware/validateRequest');
+const { body, param } = require('express-validator');
+
+const validate  = require('../middleware/validateRequest');
 
 const router = require('express').Router();
 const {

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import axios from '../api/axios';
 import * as Yup from 'yup';
 
 const preorderSchema = Yup.object({
@@ -10,6 +11,8 @@ const preorderSchema = Yup.object({
     .min(1, 'Minimalna ilość to 1')
     .required('Ilość jest wymagana'),               // walidacja liczby :contentReference[oaicite:10]{index=10}
 });
+
+
 
 const PreorderForm = ({ onSubmit }) => (
   <Formik
@@ -39,5 +42,14 @@ const PreorderForm = ({ onSubmit }) => (
     )}
   </Formik>
 );
+
+const onSubmit = (values, { resetForm }) => {
+  axios.post('/preorders', values)
+    .then(() => {
+      resetForm();             // czyścimy formularz po sukcesie :contentReference[oaicite:13]{index=13}
+      window.location.reload(); // odświeżamy listę lub lepiej: refetch w komponencie
+    })
+    .catch(err => console.error(err));
+};
 
 export default PreorderForm;
