@@ -6,7 +6,10 @@ import reportWebVitals from './reportWebVitals';
 import App from './App';
 import { AuthProvider } from './context/AuthContext';
 
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+gsap.registerPlugin(ScrollTrigger);
 const container = document.getElementById('root');
 const root = createRoot(container);
 root.render(

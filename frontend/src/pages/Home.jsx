@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import HeroSection from "../components/HeroSection"
 
-const Home = () => (
-  <div>
-    <h1>Witaj na stronie The Well Meant!</h1>
-  </div>
-);
+function Home() {
+
+
+  return (
+    <div className="scroll-container">
+      <HeroSection/>
+    </div>
+  );
+}
 
 export default Home;

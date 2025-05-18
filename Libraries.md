@@ -30,3 +30,7 @@ dotenv: 16.4.5 – do zarządzania zmiennymi środowiskowymi
 helmet: 7.0.0 – dodatkowa warstwa zabezpieczeń (opcjonalnie)
 
 https://chatgpt.com/c/68277ebb-b97c-800e-a333-60bcdb9e6802
+
+
+Front end
+https://chatgpt.com/share/6829b0ca-0810-8012-b21c-ce5715758543

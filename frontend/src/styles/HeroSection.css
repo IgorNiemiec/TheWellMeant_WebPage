@@ -1,86 +1,7 @@
-.App {
-  text-align: center;
+.body
+{
+    background-color: #000000;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.hero {
-  position: relative;
-  overflow: hidden;
-  height: 100vh; /* Pełna wysokość ekranu */
-  background-color: #000; /* Czarne tło na początek */
-}
-
-.hero-img-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
-.hero-img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Dopasuj obraz do kontenera */
-}
-
-.hero-img.layer-2 {
-  opacity: 1; /* Drugi obraz jest widoczny na początku */
-}
-
-.overlay-copy {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  font-size: 4rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  line-height: 1;
-  color: #fff;
-  z-index: 10; /* Upewnij się, że tekst jest nad obrazami */
-}
-
-/* Hero Section */
 
 .hero-container {
   position: relative;
@@ -156,7 +77,55 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at center, #f0f0f0, #ffffff);
+  background: radial-gradient(circle at center, #171717, #000000);
+  z-index: 7;
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+
+
+
+
+
+
+.masked-image-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.masked-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  top: 0;
+  left: 0;
+  transition: opacity 0.5s ease;
+}
+
+.masked-image-white {
+  background-color: white;
+  opacity: 0;
+  z-index: 2;
+}
+
+.masked-image-photo {
+  z-index: 1;
+}
+
+
+
+.final-logo {
+  position: absolute;
+  width: 40vw;
+  max-width: 400px;
+  bottom: 10vh;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 8;
   opacity: 0;
   pointer-events: none;
@@ -173,18 +142,26 @@
   gap: 2rem;
   justify-content: center;
   align-items: center;
-  z-index: 3;
+  z-index: 12;
   opacity: 0;
   pointer-events: none;
 }
 
 .platform-logos img {
-  height: 50px;
+  height: 80px;
   width: auto;
-  filter: brightness(0) invert(1); /* biały na ciemnym tle */
-  opacity: 0.8;
-  transition: opacity 0.3s ease;
+  opacity: 0.85;
+  filter: blur(0.5px);
+  transition: all 0.3s ease;
+  transform: scale(1);
 }
+
+.platform-logos img:hover {
+  opacity: 1;
+  filter: blur(0px) drop-shadow(0 0 8px rgba(255, 0, 200, 0.6));
+  transform: scale(1.1);
+}
+
 
 @media (max-width: 768px) {
   .platform-logos {
@@ -194,5 +171,43 @@
 
   .platform-logos img {
     height: 40px;
+  }
+}
+
+
+.description-section {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 5vh 2rem 10vh;
+  text-align: left;
+  position: relative;
+  z-index: 16; /* wyżej niż tło i gradient */
+}
+
+.gradient-heading {
+  font-size: 3rem;
+  font-weight: 1500;
+  background: linear-gradient(90deg,#c9c9c9, #675252 );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1rem;
+}
+
+.gradient-paragraph {
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.6;
+  background: linear-gradient(90deg, #c9c9c9, #675252);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@media (max-width: 768px) {
+  .gradient-heading {
+    font-size: 2.2rem;
+  }
+
+  .gradient-paragraph {
+    font-size: 1.1rem;
   }
 }
