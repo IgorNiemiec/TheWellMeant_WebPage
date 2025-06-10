@@ -187,9 +187,9 @@ tl.fromTo(platformLogosRef.current, {
 
       
         <div className="description-section" ref={descriptionSectionRef}>
-            <h2 className="gradient-heading">Jaworiec,</h2>
+            <h2 className="gradient-heading"></h2>
             <p className="gradient-paragraph">
-             A perpetually foggy and damp village nestled deep within the Bieszczady Mountains. Jaworiec is a small, isolated settlement surrounded by dense, ancient forests. Its few inhabitants are known for their peculiar ways and hushed tones.    
+         
             </p>
        </div>
    

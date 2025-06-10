@@ -1,0 +1,206 @@
+/* src/pages/BlogListPage.css */
+
+.blog-list-page-container {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    color: #e0e0e0;
+    font-family: 'Arial', sans-serif;
+    background-color: #1a1a1a; /* Ciemne tło */
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    text-align: center;
+}
+
+/* Nowa stylizacja dla tytułu strony */
+.page-title {
+    font-size: 3.5em; /* Większy rozmiar czcionki */
+    /* Użycie linear-gradient dla tekstu (efekt gradientowego koloru) */
+    background: linear-gradient(45deg, #ffd700, #ff8c00); /* Złoto do ciemnego pomarańczu */
+    -webkit-background-clip: text; /* Przytnij tło do kształtu tekstu */
+    -webkit-text-fill-color: transparent; /* Uczyń tekst przezroczystym, aby gradient był widoczny */
+    background-clip: text;
+    text-fill-color: transparent;
+    margin-bottom: 30px;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6); /* Mocniejszy cień */
+    text-transform: uppercase; /* Wielkie litery */
+    letter-spacing: 2px; /* Odstępy między literami */
+    font-weight: 800; /* Pogrubienie */
+}
+
+
+.server-message {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.server-message.error {
+    background-color: #dc3545;
+    color: white;
+}
+
+.server-message.success {
+    background-color: #28a745;
+    color: white;
+}
+
+.no-blogs-message {
+    font-size: 1.2em;
+    color: #bbb;
+    margin-top: 50px;
+}
+
+/* Stylizacja dla kontenera przycisków akcji */
+.blog-actions {
+    display: flex;
+    justify-content: center; /* Wyśrodkowanie przycisku */
+    margin-bottom: 30px;
+    gap: 20px; /* Odstęp między przyciskami, jeśli dodasz więcej */
+}
+
+/* Stylizacja dla przycisku "Powrót do strony głównej" */
+.back-to-home-button {
+    background: linear-gradient(145deg, #6a11cb 0%, #2575fc 100%); /* Fioletowo-niebieski gradient */
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.back-to-home-button:hover {
+    background: linear-gradient(145deg, #530eaa 0%, #1a5ac9 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
+
+
+.blog-cards-grid {
+    display: grid;
+    /* Domyślnie na dużych ekranach 3 kolumny, na mniejszych 2, na mobilnych 1 */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+    gap: 30px; /* Odstępy między kartami */
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.blog-card {
+    background-color: #2a2a2a; /* Ciemniejszy kolor karty */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.blog-card:hover {
+    transform: translateY(-8px); /* Większe uniesienie przy najechaniu */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9); /* Mocniejszy cień */
+}
+
+.blog-card-image-wrapper {
+    width: 100%;
+    height: 220px; /* Nieco większa wysokość dla obrazka */
+    overflow: hidden;
+    background-color: #1a1a1a;
+}
+
+.blog-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease-in-out; /* Dłuższa i płynniejsza animacja */
+}
+
+.blog-card:hover .blog-card-image {
+    transform: scale(1.1); /* Większe powiększenie obrazka przy najechaniu */
+}
+
+.blog-card-content {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.blog-card-content h3 {
+    font-size: 1.8em; /* Większy tytuł na karcie */
+    color: #eee;
+    margin-bottom: 10px;
+    text-align: left;
+    overflow: hidden; /* Dodane dla lepszego zarządzania długimi tytułami */
+    text-overflow: ellipsis; /* Dodaje '...' jeśli tytuł jest za długi */
+    white-space: nowrap; /* Zapobiega łamaniu linii */
+}
+
+/* Usunięto .blog-card-author i .blog-card-excerpt, jeśli ich nie używasz */
+
+.read-more-button {
+    background: linear-gradient(145deg, #ff8c00 0%, #ffd700 100%); /* Odwrócony gradient dla kontrastu */
+    color: #1a1a1a; /* Ciemny tekst dla kontrastu */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em; /* Nieco większy tekst przycisku */
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    align-self: flex-start;
+    text-transform: uppercase; /* Wielkie litery */
+    letter-spacing: 0.5px;
+}
+
+.read-more-button:hover {
+    background: linear-gradient(145deg, #ffd700 0%, #ff8c00 100%); /* Odwrócenie gradientu na hover */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Media Queries dla responsywności */
+@media (max-width: 992px) {
+    .blog-cards-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+    .page-title {
+        font-size: 3em;
+    }
+}
+
+@media (max-width: 768px) {
+    .blog-list-page-container {
+        padding: 20px 15px;
+    }
+    .page-title {
+        font-size: 2.5em;
+    }
+    .blog-cards-grid {
+        grid-template-columns: 1fr; /* Jedna kolumna na mniejszych ekranach */
+    }
+}
+
+@media (max-width: 480px) {
+    .page-title {
+        font-size: 2em;
+    }
+    .blog-card-content h3 {
+        font-size: 1.5em;
+    }
+    .read-more-button, .back-to-home-button {
+        padding: 10px 15px;
+        font-size: 0.9em;
+    }
+}

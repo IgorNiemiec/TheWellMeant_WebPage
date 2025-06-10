@@ -4,17 +4,20 @@ const preorderSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
-    required: true
+    required: true,
+    unique: true // KLUCZOWA ZMIANA: Zapewnia, że user może mieć tylko jeden preorder
   },
-  gameTitle: {
+  edition: { // Zamiast gameTitle
     type: String,
     required: true,
+    enum: ['Standard Edition', 'Deluxe Edition'], // Opcje edycji
     trim: true
   },
-  quantity: {
-    type: Number,
+  paymentMethod: { // Nowe pole: forma płatności
+    type: String,
     required: true,
-    min: 1
+    enum: ['Credit Card', 'PayPal', 'Bank Transfer'], // Przykładowe formy płatności
+    trim: true
   },
   status: {
     type: String,
@@ -22,7 +25,7 @@ const preorderSchema = new mongoose.Schema({
     default: 'pending'
   }
 }, {
-  timestamps: true 
+  timestamps: true
 });
 
 module.exports = mongoose.model('Preorder', preorderSchema);

@@ -1,93 +1,44 @@
+/* src/App.css */
+
+/* Resetowanie i podstawowe style dla całego dokumentu */
+html, body, #root {
+  height: 100%; /* Upewnij się, że html, body i root div zajmują pełną wysokość */
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Ukryj poziome przewijanie, jeśli nie jest potrzebne */
+  scroll-behavior: smooth; /* Gładkie przewijanie (opcjonalne) */
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #0d0d0d; /* Twój kolor tła */
+  color: #e0e0e0;
+  line-height: 1.6;
+}
+
+/* Główny kontener aplikacji */
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  min-height: 100vh; /* Minimalna wysokość to 100% widocznego obszaru */
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: flex-start; /* Treść zaczyna się od góry */
+  align-items: center; /* Wyśrodkuj elementy w poziomie */
+  padding: 20px; /* Dodaj padding wokół zawartości */
+  box-sizing: border-box; /* Ważne, aby padding nie powiększał pola poza min-height */
+  /* **WAŻNE:** Brak `overflow: hidden` lub stałego `height` tutaj! */
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.hero {
-  position: relative;
-  overflow: hidden;
-  height: 100vh; /* Pełna wysokość ekranu */
-  background-color: #000; /* Czarne tło na początek */
-}
-
-.hero-img-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
-.hero-img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Dopasuj obraz do kontenera */
-}
-
-.hero-img.layer-2 {
-  opacity: 1; /* Drugi obraz jest widoczny na początku */
-}
-
-.overlay-copy {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  font-size: 4rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  line-height: 1;
-  color: #fff;
-  z-index: 10; /* Upewnij się, że tekst jest nad obrazami */
-}
-
-/* Hero Section */
-
+/* Style związane z sekcją Hero (zakładając, że Hero jest osobnym komponentem na stronie głównej) */
 .hero-container {
   position: relative;
   width: 100%;
-  height: 100vh;
-  overflow: hidden;
+  height: 100vh; /* Ten element celowo zajmuje pełną wysokość widocznego obszaru */
+  overflow: hidden; /* I celowo ukrywa przewijanie, aby uzyskać efekt hero */
   background: black;
+  display: flex; /* Użyj flexboxa do centrowania zawartości */
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; /* Jeśli elementy są pionowo */
 }
 
 .background-image {
@@ -131,11 +82,11 @@
   height: 60vh;
   transform: translate(-50%, -50%);
   z-index: 9;
-  mask-image: url('../assets/LogoTWM.svg');
+  mask-image: url('../src/assets/LogoTWM.svg'); /* Pamiętaj o poprawnej ścieżce */
   mask-repeat: no-repeat;
   mask-position: center;
   mask-size: contain;
-  -webkit-mask-image: url('../assets/LogoTWM.svg');
+  -webkit-mask-image: url('../src/assets/LogoTWM.svg'); /* Dla kompatybilności */
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position: center;
   -webkit-mask-size: contain;
@@ -156,13 +107,11 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at center, #f0f0f0, #ffffff);
+  background: radial-gradient(circle at center, #3a2828, #ffffff);
   z-index: 8;
   opacity: 0;
   pointer-events: none;
 }
-
-
 
 .platform-logos {
   position: absolute;
@@ -195,4 +144,43 @@
   .platform-logos img {
     height: 40px;
   }
+}
+
+/* Animacje ogólne */
+@keyframes fadeInPanel {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes fadeInMessage {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Klasy dla spinnera ładowania */
+.loading-spinner {
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top: 4px solid #d1b892;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 20px auto;
 }

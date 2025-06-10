@@ -1,0 +1,121 @@
+/* src/pages/Dashboard.css */
+
+/* NOWY STYL DLA WYŚRODKOWANIA CAŁEJ STRONY DASHBOARD */
+.dashboard-page-wrapper {
+  display: flex;
+  justify-content: center; /* Centruj w poziomie */
+  align-items: center;   /* Centruj w pionie */
+  min-height: 100vh;      /* Upewnij się, że zajmuje całą wysokość widoku */
+  width: 100%;
+  background-color: #000000; /* Upewnij się, że tło jest czarne */
+  /* Opcjonalnie dodaj gradient tła dla estetyki */
+  position: relative; /* Ważne dla ::before */
+  overflow: hidden;
+}
+
+.dashboard-page-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(15, 10, 10, 0.4), rgba(0, 0, 0, 0.8) 70%);
+    z-index: 0;
+}
+
+.dashboard-container {
+  background: rgba(15, 10, 10, 0.6);
+  backdrop-filter: blur(8px) saturate(1.2);
+  -webkit-backdrop-filter: blur(8px) saturate(1.2);
+  border: 1px solid rgba(70, 30, 30, 0.3);
+  border-radius: 12px;
+  padding: 50px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 60px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 600px;
+  box-sizing: border-box;
+  text-align: center;
+  animation: fadeInPanel 1.5s ease-out forwards;
+  position: relative;
+  overflow: hidden;
+  z-index: 1; /* Upewnij się, że panel jest nad tłem z ::before */
+}
+
+.dashboard-container h1 {
+  color: #d1b892;
+  margin-bottom: 20px;
+  font-size: 2.5em;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+  letter-spacing: 1.5px;
+}
+
+.dashboard-container p {
+  color: #a0a0a0;
+  font-size: 1.1em;
+  margin-bottom: 40px;
+}
+
+.dashboard-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.dashboard-button, .dashboard-logout-button {
+  background: linear-gradient(145deg, #3b4f3b 0%, #2a3b2a 100%);
+  color: #e0e0e0;
+  padding: 16px 30px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.2em;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  transition: all 0.3s ease-in-out;
+  width: 100%;
+  max-width: 300px;
+  box-sizing: border-box;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+}
+
+.dashboard-button::before, .dashboard-logout-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.15);
+  transform: skewX(-20deg);
+  transition: all 0.4s ease-in-out;
+}
+
+.dashboard-button:hover::before, .dashboard-logout-button:hover::before {
+  left: 100%;
+}
+
+.dashboard-button:hover {
+  background: linear-gradient(145deg, #4a604a 0%, #3b4f3b 100%);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+}
+
+.dashboard-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.dashboard-logout-button {
+  background: linear-gradient(145deg, #6b2f2f 0%, #5a2222 100%);
+}
+
+.dashboard-logout-button:hover {
+  background: linear-gradient(145deg, #7c3a3a 0%, #6b2f2f 100%);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+}

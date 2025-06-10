@@ -1,0 +1,287 @@
+/* src/pages/ManageBlogsPage.css */
+
+
+.manage-blogs-container {
+  background: rgba(15, 10, 10, 0.6);
+  backdrop-filter: blur(8px) saturate(1.2);
+  -webkit-backdrop-filter: blur(8px) saturate(1.2);
+  border: 1px solid rgba(70, 30, 30, 0.3);
+  border-radius: 12px;
+  padding: 50px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 60px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 800px;
+  box-sizing: border-box;
+  text-align: center;
+  animation: fadeInPanel 1.5s ease-out forwards;
+  position: relative;
+  overflow: hidden; /* Możesz zostawić overflow hidden, jeśli chcesz ukryć to, co wykracza poza granice, ale nie wpłynie na przewijanie całej strony */
+}
+
+.manage-blogs-container h2 {
+  color: #d1b892;
+  margin-bottom: 35px;
+  font-size: 2.2em;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+  letter-spacing: 1px;
+}
+
+.server-message {
+  margin-top: -10px;
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 0.9em;
+  text-align: center;
+  border: 1px solid;
+  opacity: 0;
+  animation: fadeInMessage 0.5s ease-out forwards;
+}
+.server-message.success {
+  background-color: rgba(60, 100, 60, 0.3);
+  color: #a0ffa0;
+  border-color: #406040;
+}
+.server-message.error {
+  background-color: rgba(100, 60, 60, 0.3);
+  color: #ff9090;
+  border-color: #604040;
+}
+
+.blogs-actions {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 30px;
+  flex-wrap: wrap; /* Pozwól przyciskom zawijać się na mniejszych ekranach */
+}
+
+.add-new-blog-button, .back-to-dashboard-button {
+    background: linear-gradient(145deg, #3b4f3b 0%, #2a3b2a 100%);
+    color: #e0e0e0;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    text-transform: uppercase;
+    flex-shrink: 0; /* Zapobiega zmniejszaniu się przycisków */
+}
+
+.add-new-blog-button:hover, .back-to-dashboard-button:hover {
+  background: linear-gradient(145deg, #4a604a 0%, #3b4f3b 100%);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+}
+
+.back-to-dashboard-button {
+  background: linear-gradient(145deg, #4d3d3d 0%, #3d2a2a 100%);
+}
+.back-to-dashboard-button:hover {
+  background: linear-gradient(145deg, #5d4a4a 0%, #4d3d3d 100%);
+}
+
+.no-blogs-message {
+  color: #a0a0a0;
+  font-size: 1.1em;
+  margin-top: 40px;
+}
+
+.blog-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.blog-item {
+  background-color: rgba(30, 15, 15, 0.7);
+  border: 1px solid rgba(70, 30, 30, 0.4);
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.blog-item h3 {
+  color: #d1b892;
+  font-size: 1.6em;
+  margin-bottom: 10px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+.blog-item p {
+  color: #a0a0a0;
+  font-size: 0.95em;
+  margin-bottom: 8px;
+}
+
+.blog-item-actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 15px;
+  justify-content: flex-end;
+  flex-wrap: wrap; /* Pozwól przyciskom zawijać się */
+}
+
+.edit-blog-button, .delete-blog-button {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9em;
+  font-weight: bold;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  text-transform: uppercase;
+}
+
+.edit-blog-button {
+  background: linear-gradient(145deg, #4b6b4b 0%, #3b5a3b 100%);
+  color: #e0e0e0;
+}
+.edit-blog-button:hover {
+  background: linear-gradient(145deg, #5c7c5c 0%, #4b6b4b 100%);
+  transform: translateY(-1px);
+}
+
+.delete-blog-button {
+  background: linear-gradient(145deg, #7b3b3b 0%, #6a2a2a 100%);
+  color: #e0e0e0;
+}
+.delete-blog-button:hover {
+  background: linear-gradient(145deg, #8c4a4a 0%, #7b3b3b 100%);
+  transform: translateY(-1px);
+}
+
+
+/* src/pages/ManageBlogsPage.css */
+
+/* ... (istniejące style dla .manage-blogs-container, h2, server-message, blogs-actions, add-new-blog-button, back-to-dashboard-button, no-blogs-message, blog-list, blog-item, h3, p, blog-item-actions, edit-blog-button, delete-blog-button) ... */
+
+/* --- NOWE STYLE DLA OBRAZKA BLOGA --- */
+
+.blog-item-image-wrapper {
+    width: 100%; /* Obrazek zajmuje całą szerokość karty */
+    height: 180px; /* Stała wysokość dla obrazka */
+    overflow: hidden; /* Ukryj to, co wystaje poza wysokość */
+    border-radius: 8px; /* Zaokrąglone rogi */
+    margin-bottom: 15px; /* Odstęp od tekstu */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* Cień */
+}
+
+.blog-item-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Obrazek pokrywa całą przestrzeń, przycina się, jeśli trzeba */
+    display: block; /* Usuwa zbędne marginesy pod obrazkiem */
+    transition: transform 0.3s ease-in-out; /* Płynna animacja przy najechaniu */
+}
+
+.blog-item:hover .blog-item-image {
+    transform: scale(1.05); /* Lekkie powiększenie obrazka przy najechaniu na kartę */
+}
+
+/* Możesz dostosować układ, jeśli wolisz obrazek z boku */
+/*
+@media (min-width: 768px) {
+    .blog-item {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 20px;
+    }
+    .blog-item-image-wrapper {
+        width: 150px;
+        height: 120px;
+        flex-shrink: 0;
+    }
+    .blog-item-content { // Możesz opakować tekst w nowy div
+        flex-grow: 1;
+    }
+}
+*/
+
+/* src/pages/ManageBlogsPage.css */
+
+/* NOWE STYLE DLA WYŚRODKOWANIA CAŁEJ STRONY ZARZĄDZANIA BLOGAMI */
+.manage-blogs-page-wrapper {
+  display: flex;
+  justify-content: center; /* Centruj w poziomie */
+  align-items: center;   /* Centruj w pionie */
+  min-height: 100vh;      /* Upewnij się, że zajmuje całą wysokość widoku */
+  width: 100%;
+  background-color: #000000; /* Upewnij się, że tło jest czarne */
+  position: relative; /* Ważne dla ::before */
+  overflow-y: auto; /* Pozwól na przewijanie, jeśli zawartość jest za długa */
+  padding: 20px 0; /* Dodaj trochę paddingu, aby panel nie stykał się z krawędziami */
+  box-sizing: border-box; /* Ważne dla paddingu i overflow */
+}
+
+.manage-blogs-page-wrapper::before {
+    content: '';
+    position: fixed; /* Fixed, aby tło nie przewijało się z treścią */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(15, 10, 10, 0.4), rgba(0, 0, 0, 0.8) 70%);
+    z-index: 0;
+}
+
+
+.manage-blogs-container {
+  background: rgba(15, 10, 10, 0.6);
+  backdrop-filter: blur(8px) saturate(1.2);
+  -webkit-backdrop-filter: blur(8px) saturate(1.2);
+  border: 1px solid rgba(70, 30, 30, 0.3);
+  border-radius: 12px;
+  padding: 50px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 60px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 800px;
+  box-sizing: border-box;
+  text-align: center;
+  animation: fadeInPanel 1.5s ease-out forwards;
+  position: relative;
+  /* overflow: hidden;  <-- Możesz usunąć to, jeśli chcesz, aby cienie i blur działały poprawnie z przewijaniem */
+  z-index: 1; /* Upewnij się, że panel jest nad tłem z ::before */
+  margin: auto; /* Działa w połączeniu z flexbox dla centrowania, szczególnie przy stałej wysokości */
+}
+
+.manage-blogs-container h2 {
+  color: #d1b892;
+  margin-bottom: 35px;
+  font-size: 2.2em;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+  letter-spacing: 1px;
+}
+
+/* ... (pozostałe style bez zmian) ... */
+
+/* Animacja (jeśli nie masz jej zdefiniowanej gdzie indziej) */
+@keyframes fadeInPanel {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInMessage {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

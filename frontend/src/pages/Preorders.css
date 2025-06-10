@@ -1,0 +1,36 @@
+.preorders-page-container {
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+    text-align: center; /* Centrowanie zawartości */
+}
+
+/* Styl dla przycisku "Powrót do Panelu" */
+.back-button {
+  background-color: transparent;
+  color: #a0a0a0; /* Delikatniejszy kolor */
+  padding: 10px 15px;
+  border: 1px solid rgba(80, 80, 80, 0.4);
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9em;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease-in-out;
+  margin-bottom: 20px; /* Odstęp od formularza preorderu */
+  display: inline-block; /* Aby przycisk był inline i padding działał */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.back-button:hover {
+  background-color: rgba(30, 30, 30, 0.3);
+  color: #e0e0e0;
+  border-color: rgba(120, 120, 120, 0.6);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.back-button:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+}

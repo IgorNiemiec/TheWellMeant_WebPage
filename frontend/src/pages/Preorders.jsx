@@ -1,33 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import axios from '../api/axios';
+import React from 'react';
+import { useNavigate } from 'react-router-dom'; // Importujemy useNavigate
+import ManagePreorder from '../components/Preorder/ManagePreorder';
+import './Preorders.css'; // Dodamy ten plik CSS dla Preorders
 
 const Preorders = () => {
-  const [preorders, setPreorders] = useState([]);
+  const navigate = useNavigate(); // Inicjalizujemy hook useNavigate
 
-  useEffect(() => {
-    // GET /preorders na starcie komponentu
-    axios.get('/preorders')
-      .then(res => setPreorders(res.data))
-      .catch(console.error);
-  }, []); // pusty array → hook uruchomi się tylko raz po mount :contentReference[oaicite:11]{index=11}
+  const handleGoToDashboard = () => {
+    navigate('/dashboard'); // Przekierowanie do ścieżki /dashboard
+  };
 
   return (
-    <div>
-      <h1>Moje Preordery</h1>
-     <ul>
-         {preorders.map(p => (
-         <li key={p._id}>
-            {p.gameTitle}
-            <button onClick={() =>
-              axios.delete(`/preorders/${p._id}`)
-                 .then(() => setPreorders(prev => prev.filter(x => x._id !== p._id)))
-                 .catch(console.error)
-      }>
-        Usuń
+    <div className="preorders-page-container"> {/* Nowy kontener dla całej strony preorderów */}
+      <button onClick={handleGoToDashboard} className="back-button">
+        &larr; Powrót do Panelu
       </button>
-    </li>
-  ))}
-</ul>
+
+      {/* Komponent ManagePreorder będzie miał swój własny container */}
+      <ManagePreorder /> 
     </div>
   );
 };

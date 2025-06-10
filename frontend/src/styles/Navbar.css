@@ -1,0 +1,217 @@
+/* src/styles/Navbar.css */
+
+.navbar {
+  position: fixed; /* lub absolute, w zależności od potrzeb */
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: rgba(0, 0, 0, 0.7); /* Półprzezroczyste tło */
+  color: #fff;
+  z-index: 1000; /* Upewnij się, że jest na wierzchu */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.logo {
+    font-size: 2.2rem; 
+    font-weight: 900; 
+    color: #ffd700; 
+    cursor: pointer;
+    z-index: 1001;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+}
+
+.logo:hover {
+    color: #ffe066; 
+}
+
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem; 
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li button {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.15rem; 
+    padding: 0.7rem 1.2rem; 
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 8px; 
+    position: relative; 
+}
+
+.nav-links li button::after { 
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 5px; 
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ffd700;
+    transition: width 0.3s ease-out;
+}
+
+.nav-links li button:hover::after {
+    width: calc(100% - 20px); /* Szerokość podkreślenia (odjęcie paddingu) */
+}
+
+.nav-links li button:hover {
+    color: #ffd700; /* Złoty kolor przy najechaniu */
+}
+
+/* --- Przycisk CTA (Kup teraz) --- */
+.cta-button { /* Zmieniona nazwa klasy na ogólną dla CTA */
+    background: linear-gradient(90deg, #ff8c00 0%, #ffa500 100%); /* Nowy gradient */
+    border: none;
+    color: #fff;
+    padding: 0.8rem 1.8rem; /* Większy padding */
+    font-size: 1.15rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 30px; /* Bardziej zaokrąglone rogi */
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(255, 140, 0, 0.4); /* Poświata */
+    text-transform: uppercase; /* Wielkie litery */
+    letter-spacing: 0.5px;
+}
+
+.cta-button:hover {
+    background: linear-gradient(90deg, #ffa500 0%, #ff8c00 100%); /* Odwrócony gradient */
+    transform: translateY(-3px); /* Większe uniesienie */
+    box-shadow: 0 8px 20px rgba(255, 140, 0, 0.6); /* Mocniejsza poświata */
+}
+
+/* --- Hamburger menu ikona --- */
+.hamburger {
+    display: none; /* Domyślnie ukryty dla większych ekranów */
+    flex-direction: column;
+    justify-content: space-around;
+    width: 35px; /* Nieco większy rozmiar */
+    height: 30px;
+    cursor: pointer;
+    z-index: 1001;
+    padding: 5px; /* Dodatkowy padding dla łatwiejszego klikania */
+}
+
+.hamburger span {
+    display: block;
+    width: 100%;
+    height: 4px; /* Grubsze linie */
+    background-color: #fff;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+/* Animacja hamburgera */
+.hamburger.open span:nth-child(1) {
+    transform: rotate(-45deg) translate(-7px, 7px); /* Dopasowane wartości */
+}
+
+.hamburger.open span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(20px); /* Przesunięcie środkowej linii */
+}
+
+.hamburger.open span:nth-child(3) {
+    transform: rotate(45deg) translate(-7px, -7px); /* Dopasowane wartości */
+}
+
+/* --- Side Panel (Mobilne menu) --- */
+.side-panel {
+    position: fixed;
+    top: 0;
+    right: -300px; /* Domyślnie schowany, większy rozmiar */
+    width: 280px; /* Nieco szerszy panel */
+    max-width: 80vw; /* Ograniczenie, aby nie wychodził poza ekran na bardzo małych urządzeniach */
+    height: 100vh;
+    background-color: #1a1a1a; /* Tło panelu bocznego */
+    box-shadow: -8px 0 20px rgba(0, 0, 0, 0.8); /* Mocniejszy cień */
+    transition: right 0.4s ease-in-out; /* Płynniejsza animacja */
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    padding-top: 100px; /* Większy odstęp od góry, aby nie kolidować z navbar'em */
+    gap: 15px; /* Odstępy między przyciskami */
+}
+
+.side-panel.visible {
+    right: 0; /* Pokazuje panel */
+}
+
+.side-panel button {
+    background: none;
+    border: none;
+    color: #fff;
+    padding: 1rem 2rem; /* Większy padding */
+    font-size: 1.3rem; /* Większy font */
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    width: 100%;
+    /* Wyrównaj tekst do lewej, ale daj trochę wcięcia */
+    box-sizing: border-box; /* Ważne dla paddingu */
+}
+
+.side-panel button:hover {
+    background-color: rgba(255, 215, 0, 0.1); /* Delikatne złote tło na hover */
+    color: #ffd700;
+}
+
+/* Specyficzny styl dla przycisku CTA w panelu bocznym */
+.side-panel .cta-button { /* Używamy ogólnej klasy cta-button */
+    margin: 20px; /* Zapewnia odstęp z każdej strony */
+    text-align: center; /* Wyśrodkowanie tekstu w przycisku CTA */
+    width: auto; /* Pozwól na automatyczną szerokość, aby padding był widoczny */
+    align-self: center; /* Wyśrodkuj przycisk w panelu */
+}
+
+
+/* --- Media Queries dla responsywności --- */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none; /* Ukryj standardowe linki na małych ekranach */
+    }
+
+    .hamburger {
+        display: flex; /* Pokaż hamburger na małych ekranach */
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        padding: 0.8rem 1rem; /* Mniejszy padding na bardzo małych ekranach */
+    }
+    .logo {
+        font-size: 1.8rem; /* Zmniejsz logo na bardzo małych ekranach */
+    }
+    .hamburger {
+        width: 30px;
+        height: 25px;
+    }
+    .hamburger.open span:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    .hamburger.open span:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+    .side-panel {
+        width: 200px; /* Jeszcze mniejszy panel na bardzo małych ekranach */
+        max-width: 90vw;
+    }
+    .side-panel button {
+        font-size: 1.1rem;
+        padding: 0.8rem 1.5rem;
+    }
+}

@@ -1,40 +1,69 @@
-require('dotenv').config();         // wczytuje zmienne z .env przed resztą kodu :contentReference[oaicite:0]{index=0}:contentReference[oaicite:1]{index=1}
-const express = require('express'); // ładuje framework HTTP :contentReference[oaicite:2]{index=2}
-const cors = require('cors');       // umożliwia Cross‑Origin Resource Sharing :contentReference[oaicite:3]{index=3}
-const helmet = require('helmet');   // dodaje zabezpieczenia nagłówków HTTP :contentReference[oaicite:4]{index=4}
+// backend/server.js
 
+// Załaduj zmienne środowiskowe z pliku .env
+require('dotenv').config();
 
-const app = express();
+const express = require('express');
+const cors = require('cors'); // Do obsługi zapytań z innych domen
+const helmet = require('helmet'); // Do zwiększania bezpieczeństwa nagłówków HTTP
+const path = require('path'); // Do pracy ze ścieżkami plików i katalogów
+const mongoose = require('mongoose'); // Do połączenia z bazą danych MongoDB
 
-// Parsowanie JSON w ciele żądań
-app.use(express.json());            // obsługa `application/json` w request body :contentReference[oaicite:6]{index=6}
-
-// Włączenie CORS dla wszystkich źródeł
-app.use(cors());                    // zezwala frontendowi na inną domenę/port :contentReference[oaicite:7]{index=7}
-
-// Zwiększenie bezpieczeństwa nagłówków
-app.use(helmet());                  // minimalizuje ryzyko ataków typu XSS itp. :contentReference[oaicite:8]{index=8}
-
-
-const PORT = process.env.PORT || 5001;
+const app = express(); // Inicjalizacja aplikacji Express
 
 const connectDB = require('./config/db');
-connectDB();                          // łączy z MongoDB przed podniesieniem tras :contentReference[oaicite:17]{index=17}
+connectDB();
 
-// Trasy auth (rejestracja, logowanie)
-app.use('/api/auth', require('./routes/auth'));
+// --- Konfiguracja Middleware ---
 
-// **Nowe trasy preorderów**
-app.use('/api/preorders', require('./routes/preorder'));
+// CORS Middleware: Powinien być pierwszy, aby nagłówki CORS były ustawiane przed innymi.
+// Pozwala na zapytania z dowolnej domeny. W środowisku produkcyjnym powinieneś ograniczyć `origin`.
+app.use(cors());
+
+// Helmet Middleware: Dodaje różne nagłówki HTTP dla zwiększenia bezpieczeństwa.
+// Konfiguracja `crossOriginResourcePolicy` jest kluczowa dla problemu `NotSameOrigin`.
+app.use(helmet({
+    crossOriginResourcePolicy: { policy: "cross-origin" }, // Pozwala na ładowanie zasobów z różnych domen
+}));
+
+// Body Parser Middleware: Wbudowany w Express, parsuje JSON z body żądania.
+// Musi być przed definicją tras, które korzystają z req.body.
+app.use(express.json());
 
 
-// Globalny middleware obsługi błędów
+// --- Serwowanie plików statycznych ---
+// Umożliwia dostęp do plików w katalogu `uploads` poprzez URL `/uploads`.
+// Np. obrazek zapisany w `backend/uploads/blog_images/image.png` będzie dostępny pod URL `http://localhost:5001/uploads/blog_images/image.png`.
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+
+// --- Importuj i użyj routery API ---
+// Pamiętaj, aby ścieżki importu były poprawne względem pliku server.js
+const authRoutes = require('./routes/auth');
+const preorderRoutes = require('./routes/preorder');
+const blogRoutes = require('./routes/blog');
+const uploadRoutes = require('./routes/uploadRoutes'); // Zakładam, że ten router istnieje
+
+app.use('/api/auth', authRoutes);
+app.use('/api/preorders', preorderRoutes);
+app.use('/api/blogs', blogRoutes);
+// Router dla uploadu plików. Zazwyczaj jest on dostępny pod `/api/upload` lub podobnym.
+// Zostawiam `/api` jak w Twoim przykładzie, ale upewnij się, że w `uploadRoutes.js`
+// masz odpowiednie endpointy (np. router.post('/upload-blog-image', ...)).
+app.use('/api', uploadRoutes);
+
+
+// --- Globalny middleware obsługi błędów ---
+// Ten middleware wyłapuje błędy, które wystąpiły w innych middleware'ach lub trasach.
 app.use((err, req, res, next) => {
-  console.error(err.stack);                                
-  res.status(500).json({ message: 'Server error' });       
+    console.error(err.stack); // Loguj cały stack błędu dla debugowania
+    res.status(500).json({ message: 'Server error' }); // Wysyłaj ogólną wiadomość o błędzie dla klienta
 });
 
 
+// --- Uruchomienie serwera ---
+const PORT = process.env.PORT || 5001; // Port, na którym będzie działał serwer (z .env lub domyślny 5001)
+
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+    console.log(`Server running on port ${PORT}`);
 });

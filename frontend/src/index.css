@@ -1,12 +1,16 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* src/index.css (lub src/App.css) */
+
+html, body, #root {
+    overflow-x: hidden; /* Zapobiega poziomemu przewijaniu */
+    background-color: #000000; /* Ustaw czarne tło globalnie */
+    color: #ffffff; /* Domyślny kolor tekstu na całej stronie, jeśli nie jest nadpisany */
+    font-family: 'Arial', sans-serif; /* Domyślna czcionka */
 }
 
+/* Możesz usunąć to z HeroSection.css, jeśli masz to tutaj */
+/* .body {
+    background-color: #000000;
+} */
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
