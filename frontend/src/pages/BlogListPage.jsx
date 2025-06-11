@@ -1,9 +1,7 @@
-// src/pages/BlogListPage.jsx
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './BlogListPage.css'; // Stwórz ten plik CSS
+import './BlogListPage.css'; 
 
 const BlogListPage = () => {
     const [blogs, setBlogs] = useState([]);
@@ -40,14 +38,14 @@ const BlogListPage = () => {
 
     return (
         <div className="blog-list-page-container">
-            {/* Zaktualizowany tytuł z nową klasą CSS */}
+         
             <h2 className="page-title">Wszystkie Blogi</h2>
 
             {serverMessage.text && (
                 <p className={`server-message ${serverMessage.type}`}>{serverMessage.text}</p>
             )}
 
-            {/* Kontener dla przycisków akcji */}
+            
             <div className="blog-actions">
                 <button
                     onClick={() => navigate('/')}

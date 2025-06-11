@@ -9,7 +9,7 @@ exports.createBlog = async (req, res) => {
   try {
     const { title, chapters } = req.body;
     
-    // Sprawdź, czy blog o danym tytule już istnieje
+  
     const existingBlog = await Blog.findOne({ title });
     if (existingBlog) {
       return res.status(400).json({ message: 'Wpis na blogu o takim tytule już istnieje.' });
@@ -17,7 +17,7 @@ exports.createBlog = async (req, res) => {
 
     const blog = new Blog({
       title,
-      author: req.user.id, // ID użytkownika z middleware auth
+      author: req.user.id, 
       chapters
     });
 
@@ -34,7 +34,7 @@ exports.createBlog = async (req, res) => {
 // @access  Public (każdy może je czytać)
 exports.getAllBlogs = async (req, res) => {
   try {
-    // Populacja pola 'author' pozwoli nam pobrać dane autora (np. username)
+   
     const blogs = await Blog.find().populate('author', 'username').sort('-createdAt'); 
     res.status(200).json(blogs);
   } catch (err) {
@@ -55,7 +55,7 @@ exports.getBlogById = async (req, res) => {
     res.status(200).json(blog);
   } catch (err) {
     console.error(err.message);
-    if (err.kind === 'ObjectId') { // Jeśli ID jest nieprawidłowe
+    if (err.kind === 'ObjectId') { 
       return res.status(400).json({ message: 'Nieprawidłowe ID wpisu na blogu.' });
     }
     res.status(500).json({ message: 'Błąd serwera podczas pobierania wpisu na blogu.' });
@@ -68,7 +68,7 @@ exports.getBlogById = async (req, res) => {
 exports.updateBlog = async (req, res) => {
   const { title, chapters } = req.body;
 
-  // Obiekt do aktualizacji
+ 
   const blogFields = {};
   if (title) blogFields.title = title;
   if (chapters) blogFields.chapters = chapters;
@@ -80,7 +80,6 @@ exports.updateBlog = async (req, res) => {
       return res.status(404).json({ message: 'Wpis na blogu nie znaleziony.' });
     }
 
-    // Sprawdź, czy zalogowany użytkownik jest autorem bloga
     if (blog.author.toString() !== req.user.id) {
       return res.status(401).json({ message: 'Brak autoryzacji do edycji tego wpisu na blogu.' });
     }
@@ -88,7 +87,7 @@ exports.updateBlog = async (req, res) => {
     blog = await Blog.findByIdAndUpdate(
       req.params.id,
       { $set: blogFields },
-      { new: true, runValidators: true } // Zwraca zaktualizowany dokument i uruchamia walidatory
+      { new: true, runValidators: true }
     );
 
     res.status(200).json(blog);
@@ -97,7 +96,7 @@ exports.updateBlog = async (req, res) => {
     if (err.kind === 'ObjectId') {
       return res.status(400).json({ message: 'Nieprawidłowe ID wpisu na blogu.' });
     }
-    if (err.code === 11000) { // Błąd duplikatu tytułu
+    if (err.code === 11000) { 
       return res.status(400).json({ message: 'Wpis na blogu o takim tytule już istnieje.' });
     }
     res.status(500).json({ message: 'Błąd serwera podczas aktualizacji wpisu na blogu.' });
@@ -115,7 +114,7 @@ exports.deleteBlog = async (req, res) => {
       return res.status(404).json({ message: 'Wpis na blogu nie znaleziony.' });
     }
 
-    // Sprawdź, czy zalogowany użytkownik jest autorem bloga
+
     if (blog.author.toString() !== req.user.id) {
       return res.status(401).json({ message: 'Brak autoryzacji do usunięcia tego wpisu na blogu.' });
     }

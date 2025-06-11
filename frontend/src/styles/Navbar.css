@@ -1,7 +1,7 @@
-/* src/styles/Navbar.css */
+
 
 .navbar {
-  position: fixed; /* lub absolute, w zależności od potrzeb */
+  position: fixed; 
   top: 0;
   left: 0;
   width: 100%;
@@ -9,9 +9,9 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: rgba(0, 0, 0, 0.7); /* Półprzezroczyste tło */
+  background-color: rgba(0, 0, 0, 0.7); 
   color: #fff;
-  z-index: 1000; /* Upewnij się, że jest na wierzchu */
+  z-index: 1000;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
@@ -64,137 +64,131 @@
 }
 
 .nav-links li button:hover::after {
-    width: calc(100% - 20px); /* Szerokość podkreślenia (odjęcie paddingu) */
+    width: calc(100% - 20px); 
 }
 
 .nav-links li button:hover {
-    color: #ffd700; /* Złoty kolor przy najechaniu */
+    color: #ffd700; 
 }
 
-/* --- Przycisk CTA (Kup teraz) --- */
-.cta-button { /* Zmieniona nazwa klasy na ogólną dla CTA */
-    background: linear-gradient(90deg, #ff8c00 0%, #ffa500 100%); /* Nowy gradient */
+.cta-button { 
+    background: linear-gradient(90deg, #ff8c00 0%, #ffa500 100%);
     border: none;
     color: #fff;
-    padding: 0.8rem 1.8rem; /* Większy padding */
+    padding: 0.8rem 1.8rem; 
     font-size: 1.15rem;
     font-weight: bold;
     cursor: pointer;
-    border-radius: 30px; /* Bardziej zaokrąglone rogi */
+    border-radius: 30px; 
     transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(255, 140, 0, 0.4); /* Poświata */
-    text-transform: uppercase; /* Wielkie litery */
+    box-shadow: 0 5px 15px rgba(255, 140, 0, 0.4);
+    text-transform: uppercase; 
     letter-spacing: 0.5px;
 }
 
 .cta-button:hover {
-    background: linear-gradient(90deg, #ffa500 0%, #ff8c00 100%); /* Odwrócony gradient */
-    transform: translateY(-3px); /* Większe uniesienie */
-    box-shadow: 0 8px 20px rgba(255, 140, 0, 0.6); /* Mocniejsza poświata */
+    background: linear-gradient(90deg, #ffa500 0%, #ff8c00 100%); 
+    transform: translateY(-3px); 
+    box-shadow: 0 8px 20px rgba(255, 140, 0, 0.6);
 }
 
-/* --- Hamburger menu ikona --- */
 .hamburger {
-    display: none; /* Domyślnie ukryty dla większych ekranów */
+    display: none; 
     flex-direction: column;
     justify-content: space-around;
-    width: 35px; /* Nieco większy rozmiar */
+    width: 35px;
     height: 30px;
     cursor: pointer;
     z-index: 1001;
-    padding: 5px; /* Dodatkowy padding dla łatwiejszego klikania */
+    padding: 5px; 
 }
 
 .hamburger span {
     display: block;
     width: 100%;
-    height: 4px; /* Grubsze linie */
+    height: 4px; 
     background-color: #fff;
     border-radius: 2px;
     transition: all 0.3s ease;
 }
 
-/* Animacja hamburgera */
 .hamburger.open span:nth-child(1) {
-    transform: rotate(-45deg) translate(-7px, 7px); /* Dopasowane wartości */
+    transform: rotate(-45deg) translate(-7px, 7px);
 }
 
 .hamburger.open span:nth-child(2) {
     opacity: 0;
-    transform: translateX(20px); /* Przesunięcie środkowej linii */
+    transform: translateX(20px);
 }
 
 .hamburger.open span:nth-child(3) {
-    transform: rotate(45deg) translate(-7px, -7px); /* Dopasowane wartości */
+    transform: rotate(45deg) translate(-7px, -7px); 
 }
 
-/* --- Side Panel (Mobilne menu) --- */
 .side-panel {
     position: fixed;
     top: 0;
-    right: -300px; /* Domyślnie schowany, większy rozmiar */
-    width: 280px; /* Nieco szerszy panel */
-    max-width: 80vw; /* Ograniczenie, aby nie wychodził poza ekran na bardzo małych urządzeniach */
+    right: -300px; 
+    width: 280px; 
+    max-width: 80vw; 
     height: 100vh;
-    background-color: #1a1a1a; /* Tło panelu bocznego */
-    box-shadow: -8px 0 20px rgba(0, 0, 0, 0.8); /* Mocniejszy cień */
-    transition: right 0.4s ease-in-out; /* Płynniejsza animacja */
+    background-color: #1a1a1a; 
+    box-shadow: -8px 0 20px rgba(0, 0, 0, 0.8); 
+    transition: right 0.4s ease-in-out; 
     z-index: 999;
     display: flex;
     flex-direction: column;
-    padding-top: 100px; /* Większy odstęp od góry, aby nie kolidować z navbar'em */
-    gap: 15px; /* Odstępy między przyciskami */
+    padding-top: 100px; 
+    gap: 15px; 
 }
 
 .side-panel.visible {
-    right: 0; /* Pokazuje panel */
+    right: 0; 
 }
 
 .side-panel button {
     background: none;
     border: none;
     color: #fff;
-    padding: 1rem 2rem; /* Większy padding */
-    font-size: 1.3rem; /* Większy font */
+    padding: 1rem 2rem;
+    font-size: 1.3rem; 
     text-align: left;
     cursor: pointer;
     transition: background-color 0.2s ease, color 0.2s ease;
     width: 100%;
-    /* Wyrównaj tekst do lewej, ale daj trochę wcięcia */
-    box-sizing: border-box; /* Ważne dla paddingu */
+   
+    box-sizing: border-box; 
 }
 
 .side-panel button:hover {
-    background-color: rgba(255, 215, 0, 0.1); /* Delikatne złote tło na hover */
+    background-color: rgba(255, 215, 0, 0.1); 
     color: #ffd700;
 }
 
-/* Specyficzny styl dla przycisku CTA w panelu bocznym */
-.side-panel .cta-button { /* Używamy ogólnej klasy cta-button */
-    margin: 20px; /* Zapewnia odstęp z każdej strony */
-    text-align: center; /* Wyśrodkowanie tekstu w przycisku CTA */
-    width: auto; /* Pozwól na automatyczną szerokość, aby padding był widoczny */
-    align-self: center; /* Wyśrodkuj przycisk w panelu */
+.side-panel .cta-button { 
+    margin: 20px; 
+    text-align: center;
+    width: auto; 
+    align-self: center; 
 }
 
 
-/* --- Media Queries dla responsywności --- */
 @media (max-width: 768px) {
     .nav-links {
-        display: none; /* Ukryj standardowe linki na małych ekranach */
+        display: none; 
     }
 
     .hamburger {
-        display: flex; /* Pokaż hamburger na małych ekranach */
+        display: flex; 
     }
 }
 
 @media (max-width: 480px) {
     .navbar {
-        padding: 0.8rem 1rem; /* Mniejszy padding na bardzo małych ekranach */
+        padding: 0.8rem 1rem;
     }
     .logo {
-        font-size: 1.8rem; /* Zmniejsz logo na bardzo małych ekranach */
+        font-size: 1.8rem; 
     }
     .hamburger {
         width: 30px;
@@ -207,7 +201,7 @@
         transform: rotate(45deg) translate(-5px, -6px);
     }
     .side-panel {
-        width: 200px; /* Jeszcze mniejszy panel na bardzo małych ekranach */
+        width: 200px; 
         max-width: 90vw;
     }
     .side-panel button {

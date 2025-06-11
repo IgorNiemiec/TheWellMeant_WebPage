@@ -4,11 +4,8 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // Importuj useNavigate
 
-import './RegisterForm.css'; // Możemy użyć tych samych stylów lub stworzyć osobne RegisterForm.css
+import './RegisterForm.css'; 
 
-/**
- * Schemat walidacji dla formularza rejestracji.
- */
 const validationSchema = Yup.object({
   email: Yup.string()
     .email('Nieprawidłowy format e‑mail')
@@ -18,23 +15,19 @@ const validationSchema = Yup.object({
     .required('Hasło jest wymagane'),
 });
 
-/**
- * Komponent RegisterForm odpowiedzialny za wyświetlanie formularza rejestracji.
- */
 const RegisterForm = () => {
-  const navigate = useNavigate(); // Inicjalizacja useNavigate
+  const navigate = useNavigate(); 
 
   const handleSubmit = async (values, { setSubmitting, setStatus, resetForm }) => {
-    setStatus(null); // Resetuje poprzednie komunikaty o statusie
+    setStatus(null); 
     try {
       const response = await axios.post('http://localhost:5001/api/auth/register', values);
 
       console.log('Registration successful:', response.data);
       setStatus({ success: true, message: 'Rejestracja zakończona sukcesem! Możesz się zalogować.' });
-      resetForm(); // Wyczyść formularz po pomyślnej rejestracji
+      resetForm(); 
 
-      // Możesz opcjonalnie przekierować użytkownika od razu na stronę logowania
-      // setTimeout(() => navigate('/login'), 2000); // Przekieruj po 2 sekundach
+    
 
     } catch (error) {
       console.error('Registration error:', error.response ? error.response.data : error.message);
@@ -45,7 +38,7 @@ const RegisterForm = () => {
   };
 
   return (
-    <div className="login-container"> {/* Używamy tej samej klasy kontenera dla spójności stylu */}
+    <div className="login-container"> 
       <h2>Zarejestruj się</h2>
       <Formik
         initialValues={{ email: '', password: '' }}
@@ -78,12 +71,12 @@ const RegisterForm = () => {
               {isSubmitting ? 'Rejestrowanie...' : 'Zarejestruj'}
             </button>
 
-            {/* Nowy przycisk do przejścia do logowania, używający navigate */}
+          
             <div className="switch-form-container">
               <p>Masz już konto?</p>
               <button
                 type="button"
-                onClick={() => navigate('/login')} // Przekierowanie do /login
+                onClick={() => navigate('/login')}
                 className="switch-button"
               >
                 Zaloguj się

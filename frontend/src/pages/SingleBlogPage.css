@@ -1,52 +1,51 @@
-/* src/pages/SingleBlogPage.css */
 
 .single-blog-container {
     padding: 40px 20px;
     max-width: 900px;
     margin: 30px auto;
-    background-color: #2a2a2a; /* Ciemniejsze tło dla głównego kontenera bloga */
+    background-color: #2a2a2a; 
     border-radius: 12px;
-    box-shadow: 0 0 25px rgba(0, 0, 0, 0.7); /* Głęboki cień */
-    color: #e0e0e0; /* Jasny tekst dla kontrastu */
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.7); 
+    color: #e0e0e0; 
     font-family: 'Arial', sans-serif;
     line-height: 1.7;
-    text-align: left; /* Domyślne wyrównanie tekstu */
+    text-align: left; 
 }
 
 .blog-title {
-    font-size: 3em; /* Duży tytuł */
-    color: #ffd700; /* Złoty kolor dla wyróżnienia */
+    font-size: 3em; 
+    color: #ffd700;
     text-align: center;
     margin-bottom: 20px;
-    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5); /* Cień tekstu */
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5); 
     line-height: 1.2;
 }
 
 .blog-meta {
     font-size: 0.95em;
-    color: #bbb; /* Subtelniejszy kolor dla meta-danych */
+    color: #bbb; 
     text-align: center;
-    margin-bottom: 40px; /* Większy odstęp od obrazka */
+    margin-bottom: 40px; 
     font-style: italic;
 }
 
 .blog-author {
     font-weight: bold;
-    color: #fff; /* Biały kolor dla autora */
+    color: #fff; 
 }
 
 .blog-date {
-    font-style: normal; /* Usuń domyślne pochylenie, jeśli było */
+    font-style: normal; 
 }
 
 .blog-main-image-wrapper {
     width: 100%;
-    max-height: 450px; /* Maksymalna wysokość obrazka */
+    max-height: 450px; 
     overflow: hidden;
     border-radius: 10px;
-    margin-bottom: 40px; /* Odstęp od treści */
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6); /* Wyraźny cień obrazka */
-    background-color: #1c1c1c; /* Tło dla wrapper'a, jeśli obrazek jest mniejszy */
+    margin-bottom: 40px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6); 
+    background-color: #1c1c1c; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -76,19 +75,19 @@
 }
 
 .blog-chapter {
-    margin-bottom: 40px; /* Większy odstęp między rozdziałami */
+    margin-bottom: 40px; 
     padding-bottom: 30px;
-    border-bottom: 1px solid rgba(70, 30, 30, 0.4); /* Delikatna linia pod rozdziałem */
+    border-bottom: 1px solid rgba(70, 30, 30, 0.4); 
 }
 
 .blog-chapter:last-child {
-    border-bottom: none; /* Brak linii pod ostatnim rozdziałem */
+    border-bottom: none; 
     margin-bottom: 0;
     padding-bottom: 0;
 }
 
 .chapter-title {
-    font-size: 2.4em; /* Duży tytuł rozdziału */
+    font-size: 2.4em; 
     color: #ffd700;
     margin-bottom: 15px;
     text-align: left;
@@ -96,34 +95,34 @@
 }
 
 .chapter-content {
-    font-size: 1.15em; /* Lekko większy tekst treści */
+    font-size: 1.15em; 
     color: #e0e0e0;
     margin-bottom: 10px;
     text-align: left;
-    white-space: pre-wrap; /* Zachowaj formatowanie (np. łamanie linii) z textarea */
-    word-wrap: break-word; /* Zapobiega przepełnieniom w przypadku długich słów */
+    white-space: pre-wrap; 
+    word-wrap: break-word; 
 }
 
 .back-to-blogs-button {
     display: block;
     width: fit-content;
-    margin: 60px auto 0 auto; /* Większy odstęp od treści, centrowanie */
+    margin: 60px auto 0 auto; 
     background: linear-gradient(145deg, #6b2f2f 0%, #5a2222 100%);
     color: #e0e0e0;
-    padding: 15px 30px; /* Większy przycisk */
+    padding: 15px 30px; 
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    font-size: 1.2em; /* Większa czcionka */
+    font-size: 1.2em;
     font-weight: bold;
     transition: all 0.3s ease;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-    text-decoration: none; /* Upewnij się, że nie ma podkreśleń, jeśli zmienisz na <a> */
+    text-decoration: none; 
 }
 
 .back-to-blogs-button:hover {
     background: linear-gradient(145deg, #7c3a3a 0%, #6b2f2f 100%);
-    transform: translateY(-3px); /* Wyraźniejszy efekt uniesienia */
+    transform: translateY(-3px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
 }
 

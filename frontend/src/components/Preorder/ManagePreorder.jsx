@@ -70,8 +70,6 @@ const ManagePreorder = () => {
     try {
       let response;
       if (currentPreorder) {
-        // Przy aktualizacji wysyłamy tylko te pola, które mogą być zmienione przez użytkownika
-        // Status jest zarządzany przez backend, więc go nie wysyłamy, chyba że zmieniamy to w przyszłości
         const { edition, paymentMethod } = values; 
         response = await axios.put(`http://localhost:5001/api/preorders/${currentPreorder._id}`, { edition, paymentMethod }, {
           headers: { 'Authorization': `Bearer ${token}` }
@@ -152,8 +150,7 @@ const ManagePreorder = () => {
       >
         {({ isSubmitting, status, values }) => (
           <Form>
-            {/* Pola do wyboru edycji i formy płatności są zawsze aktywne,
-                aby użytkownik mógł je zmienić, jeśli preorder już istnieje */}
+       
             <div className="form-group">
               <label htmlFor="edition">Wybierz Edycję:</label>
               <Field as="select" name="edition" id="edition">
@@ -173,8 +170,8 @@ const ManagePreorder = () => {
               <ErrorMessage name="paymentMethod" component="div" className="error-message" />
             </div>
 
-            {currentPreorder && ( // Wyświetlamy te informacje TYLKO jeśli preorder już istnieje
-              <div className="preorder-details-summary"> {/* Nowy kontener na podsumowanie */}
+            {currentPreorder && ( 
+              <div className="preorder-details-summary"> 
                 <h3>Aktualne dane preorderu:</h3>
                 <div className="detail-item">
                   <span className="detail-label">Edycja:</span>

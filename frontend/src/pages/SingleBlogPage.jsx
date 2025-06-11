@@ -1,20 +1,17 @@
-// src/pages/SingleBlogPage.jsx
-
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './SingleBlogPage.css'; // Stwórz ten plik CSS
+import './SingleBlogPage.css'; 
 
 const SingleBlogPage = () => {
-    const { id } = useParams(); // Pobierz ID bloga z URL
+    const { id } = useParams(); 
     const navigate = useNavigate();
 
     const [blog, setBlog] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
 
-    // Ustawienie base URL dla Axios (upewnij się, że jest poprawne)
-    axios.defaults.baseURL = 'http://localhost:5001'; // Twój port backendu
+    axios.defaults.baseURL = 'http://localhost:5001'; 
 
     useEffect(() => {
         const fetchBlog = async () => {
@@ -24,7 +21,9 @@ const SingleBlogPage = () => {
                 const response = await axios.get(`/api/blogs/${id}`);
                 setBlog(response.data);
                 setLoading(false);
-            } catch (err) {
+            } 
+            catch (err) 
+            {
                 setLoading(false);
                 if (err.response && err.response.status === 404) {
                     setError('Blog nie znaleziony.');
@@ -38,10 +37,10 @@ const SingleBlogPage = () => {
         if (id) {
             fetchBlog();
         }
-    }, [id]); // Wywołaj efekt, gdy ID bloga się zmieni
+    }, [id]);
 
     if (loading) {
-        return <div className="loading-spinner"></div>; // Styl ładowania
+        return <div className="loading-spinner"></div>; 
     }
 
     if (error) {
@@ -52,7 +51,6 @@ const SingleBlogPage = () => {
         return <div className="single-blog-not-found">Blog nie dostępny.</div>;
     }
 
-    // Funkcja pomocnicza do formatowania daty
     const formatDateTime = (dateString) => {
         const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
         return new Date(dateString).toLocaleDateString('pl-PL', options);
@@ -76,7 +74,7 @@ const SingleBlogPage = () => {
             ) : (
                 <div className="blog-main-image-wrapper placeholder-image-wrapper">
                     <img
-                        src="/images/placeholder.png" // Upewnij się, że masz ten obrazek w katalogu public/images
+                        src="/images/placeholder.png" 
                         alt="Brak obrazka głównego"
                         className="blog-main-image placeholder-image"
                     />

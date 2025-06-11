@@ -1,5 +1,3 @@
-// src/components/LoginForm/LoginForm.jsx
-
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
@@ -20,44 +18,41 @@ const validationSchema = Yup.object({
 
 const LoginForm = () => {
   const navigate = useNavigate();
-  const { login } = useAuth(); // <-- POBIERZ FUNKCJĘ LOGIN Z KONTEKSTU
+  const { login } = useAuth();
 
   const handleSubmit = async (values, { setSubmitting, setStatus }) => {
-    setStatus(null); // Czyści poprzednie statusy/błędy
+    setStatus(null); 
     try {
       const response = await axios.post('http://localhost:5001/api/auth/login', values);
 
       console.log('Login successful:', response.data);
       if (response.data.token) {
-        login(response.data.token); // <-- KLUCZOWA ZMIANA: Użyj funkcji login z kontekstu
-        setStatus({ success: true, message: 'Logowanie pomyślne!' }); // Komunikat o sukcesie
+        login(response.data.token);
+        setStatus({ success: true, message: 'Logowanie pomyślne!' }); 
 
-        // Opóźnij przekierowanie, aby użytkownik zobaczył komunikat sukcesu
+      
         setTimeout(() => {
           navigate('/dashboard');
-        }, 1000); // Przekierowanie po 1 sekundzie
+        }, 1000); 
       } else {
-          // Jeśli tokenu brakuje w odpowiedzi, a serwer zwrócił 200 OK
           setStatus({ success: false, message: 'Logowanie nie powiodło się: brak tokenu w odpowiedzi serwera.' });
       }
 
     } catch (error) {
       console.error('Login error:', error.response ? error.response.data : error.message);
 
-      let errorMessage = 'Błąd logowania. Spróbuj ponownie.'; // Domyślna wiadomość
+      let errorMessage = 'Błąd logowania. Spróbuj ponownie.'; 
 
-      // Logika wyodrębniania komunikatu z błędu serwera (ta sama, którą już mieliśmy)
       if (error.response && error.response.data) {
         if (typeof error.response.data === 'string') {
           errorMessage = error.response.data;
-        } else if (error.response.data.message) { // To jest najprawdopodobniej to, co zwraca Twój backend dla błędnych danych
+        } else if (error.response.data.message) {
           errorMessage = error.response.data.message;
         } else if (error.response.data.error) {
           errorMessage = error.response.data.error;
         } else if (error.response.data.description) {
           errorMessage = error.response.data.description;
         }
-        // Jeśli serwer zwraca błędy walidacji w tablicy (np. express-validator dla /register)
         else if (error.response.data.errors && Array.isArray(error.response.data.errors) && error.response.data.errors.length > 0) {
             errorMessage = error.response.data.errors.map(err => err.msg).join(', ');
         }
@@ -93,7 +88,6 @@ const LoginForm = () => {
                 <ErrorMessage name="password" component="div" className="error-message" />
               </div>
 
-              {/* Komunikat o błędzie serwera lub sukcesie */}
               {status && status.message && (
                 <div className={`server-message ${status.success ? 'success' : 'error'}`}>
                   {status.message}

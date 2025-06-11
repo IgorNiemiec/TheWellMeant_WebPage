@@ -1,12 +1,11 @@
 /* src/App.css */
 
-/* Resetowanie i podstawowe style dla całego dokumentu */
 html, body, #root {
-  height: 100%; /* Upewnij się, że html, body i root div zajmują pełną wysokość */
+  height: 100%; 
   margin: 0;
   padding: 0;
-  overflow-x: hidden; /* Ukryj poziome przewijanie, jeśli nie jest potrzebne */
-  scroll-behavior: smooth; /* Gładkie przewijanie (opcjonalne) */
+  overflow-x: hidden; 
+  scroll-behavior: smooth;
 }
 
 body {
@@ -16,29 +15,26 @@ body {
   line-height: 1.6;
 }
 
-/* Główny kontener aplikacji */
 .App {
-  min-height: 100vh; /* Minimalna wysokość to 100% widocznego obszaru */
+  min-height: 100vh; 
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Treść zaczyna się od góry */
-  align-items: center; /* Wyśrodkuj elementy w poziomie */
-  padding: 20px; /* Dodaj padding wokół zawartości */
-  box-sizing: border-box; /* Ważne, aby padding nie powiększał pola poza min-height */
-  /* **WAŻNE:** Brak `overflow: hidden` lub stałego `height` tutaj! */
+  justify-content: flex-start; 
+  align-items: center; 
+  padding: 20px; 
+  box-sizing: border-box; 
 }
 
-/* Style związane z sekcją Hero (zakładając, że Hero jest osobnym komponentem na stronie głównej) */
 .hero-container {
   position: relative;
   width: 100%;
-  height: 100vh; /* Ten element celowo zajmuje pełną wysokość widocznego obszaru */
-  overflow: hidden; /* I celowo ukrywa przewijanie, aby uzyskać efekt hero */
+  height: 100vh; 
+  overflow: hidden; 
   background: black;
-  display: flex; /* Użyj flexboxa do centrowania zawartości */
+  display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column; /* Jeśli elementy są pionowo */
+  flex-direction: column;
 }
 
 .background-image {
@@ -82,11 +78,11 @@ body {
   height: 60vh;
   transform: translate(-50%, -50%);
   z-index: 9;
-  mask-image: url('../src/assets/LogoTWM.svg'); /* Pamiętaj o poprawnej ścieżce */
+  mask-image: url('../src/assets/LogoTWM.svg');
   mask-repeat: no-repeat;
   mask-position: center;
   mask-size: contain;
-  -webkit-mask-image: url('../src/assets/LogoTWM.svg'); /* Dla kompatybilności */
+  -webkit-mask-image: url('../src/assets/LogoTWM.svg');
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position: center;
   -webkit-mask-size: contain;
@@ -130,7 +126,7 @@ body {
 .platform-logos img {
   height: 50px;
   width: auto;
-  filter: brightness(0) invert(1); /* biały na ciemnym tle */
+  filter: brightness(0) invert(1);
   opacity: 0.8;
   transition: opacity 0.3s ease;
 }
@@ -174,7 +170,6 @@ body {
   100% { transform: rotate(360deg); }
 }
 
-/* Klasy dla spinnera ładowania */
 .loading-spinner {
   border: 4px solid rgba(255, 255, 255, 0.3);
   border-top: 4px solid #d1b892;
